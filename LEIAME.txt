@@ -1,0 +1,1 @@
+PCP Preall - abra index.html no navegador, entre com o login do administrador (precisa de internet para a fonte e o leitor de Excel). Os dados ficam salvos no proprio navegador.

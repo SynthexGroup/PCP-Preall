@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PCP Preall · Planejamento e Controle da Produção</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=Barlow:wght@400;500;600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <img class="logo" src="data:image/png;base64,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" alt="Preall design cimentício"><div class="brand"><h1>PCP Preall</h1><small>Planejamento e Controle da Produção</small><small id="sync" class="sync noprint"></small></div>
+  <nav id="nav">
+    <button data-v="hoje" class="on">Hoje</button>
+    <button data-v="prod">Produção</button>
+    <button data-v="desf">Desforma</button>
+    <button data-v="pint">Pintura</button>
+    <button data-v="pal">Paletização</button>
+    <button data-v="apt">Apontar</button>
+    <button data-v="peds">Pedidos</button>
+    <button data-v="novo">Novo pedido</button>
+    <button data-v="formas">Formas</button>
+    <button data-v="plan">Programar</button>
+    <button data-v="imp">Importar</button>
+    <button data-v="cfg">Ajustes</button>
+    <button data-v="usr" id="nav-usr" hidden>Usuários</button>
+  </nav>
+  <div class="userbox noprint"><span id="who"></span><button class="b" id="btn-out" type="button">Sair</button></div>
+</header>
+
+<div id="auth" class="auth noprint" hidden>
+  <form id="a-form" class="auth-box" autocomplete="on">
+    <h1>PCP Preall</h1><small>Planejamento e Controle da Produção</small>
+    <label for="a-em">E-mail</label><input id="a-em" type="email" autocomplete="username" required>
+    <label for="a-pw">Senha</label><input id="a-pw" type="password" autocomplete="current-password" required>
+    <label class="keep"><input type="checkbox" id="a-keep"> Manter conectado neste aparelho</label>
+    <button class="b p" type="submit">Entrar</button>
+    <p id="a-msg" class="err" role="alert"></p>
+    <p class="note">Não tem conta? Peça ao administrador para criar o seu acesso.</p>
+  </form>
+</div>
+<main>
+  <div class="bar noprint" id="datebar">
+    <button class="b" id="prev" aria-label="Dia anterior">◀</button>
+    <input type="date" id="dia" aria-label="Data">
+    <button class="b" id="next" aria-label="Próximo dia">▶</button>
+    <button class="b" id="hoje">Hoje</button>
+    <span class="sp"></span>
+    <button class="b p" id="print">Imprimir esta aba</button>
+  </div>
+
+  <section class="view on" id="v-hoje"></section>
+  <section class="view" id="v-apt"></section>
+  <section class="view" id="v-prod"></section>
+  <section class="view" id="v-desf"></section>
+  <section class="view" id="v-pint"></section>
+  <section class="view" id="v-pal"></section>
+
+  <section class="view" id="v-peds">
+    <div class="stats" id="stats"></div>
+    <div class="bar">
+      <select id="fil" aria-label="Filtrar situação">
+        <option value="">Todas as situações</option><option value="bad">Atrasados</option><option value="warn">Atenção</option><option value="ok">Em dia</option><option value="done">Concluídos</option>
+      </select>
+      <input type="search" id="busca" placeholder="Buscar nº ou cliente">
+    </div>
+    <div class="cards" id="lista"></div>
+  </section>
+
+  <section class="view" id="v-novo">
+    <div class="panel">
+      <h3>Dados do pedido</h3>
+      <div class="grid">
+        <div><label for="f-num">Nº do pedido</label><input id="f-num" inputmode="numeric"></div>
+        <div><label for="f-cli">Cliente</label><input id="f-cli"></div>
+        <div><label for="f-prazo">Prazo de entrega</label><input type="date" id="f-prazo"></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>Adicionar peça ao pedido</h3>
+      <div class="grid">
+        <div><label for="i-for">Formato</label><input id="i-for" list="dl-for" placeholder="Piso, régua, degrau…"></div>
+        <div><label for="i-dim">Dimensão (cm)</label><input id="i-dim" placeholder="100x100x2,5"></div>
+        <div><label for="i-lin">Linha</label><input id="i-lin" list="dl-lin" placeholder="Santorini, Mykonos…"></div>
+        <div><label for="i-cor">Cor</label><input id="i-cor" list="dl-cor" placeholder="Branco, amarelo…"></div>
+        <div><label for="i-qtd">Quantidade (peças)</label><input id="i-qtd" type="number" min="1"></div>
+        <div><label for="i-data">Data de produção (opcional)</label><input id="i-data" type="date"></div>
+        <div><label for="i-pin">Forma recebe</label><select id="i-pin"><option>Desmoldante</option><option>DRC</option></select></div>
+        <div><label for="i-kg">Peso por peça (kg), automático pela dimensão</label><input id="i-kg" type="number" step="0.01" min="0"></div>
+        <div><label for="i-rep">Repetir por quantos dias (qtd é por dia)</label><input id="i-rep" type="number" min="1" max="60" value="1"></div>
+      </div>
+      <datalist id="dl-for"></datalist><datalist id="dl-lin"></datalist><datalist id="dl-cor"></datalist>
+      <p class="bar" style="margin:12px 0 0"><button class="b p" id="addi">Adicionar peça</button></p>
+      <div class="err" id="err"></div>
+    </div>
+    <div class="panel">
+      <h3>Peças neste pedido</h3>
+      <div class="tw" id="draft"></div>
+      <p class="bar" style="margin:12px 0 0"><button class="b p" id="salvar">Salvar pedido</button><button class="b" id="limpar">Limpar</button></p>
+      <p class="note">Se o nº já existir, as peças são somadas ao pedido existente.</p>
+    </div>
+  </section>
+
+  <section class="view" id="v-formas">
+    <div class="panel"><h3>Cadastrar formas</h3>
+      <div class="grid"><div><label for="fo-dim">Dimensão</label><input id="fo-dim" placeholder="100x100x2,5"></div><div><label for="fo-lin">Linha (opcional)</label><input id="fo-lin" list="dl-lin"></div><div><label for="fo-qtd">Quantidade de formas</label><input id="fo-qtd" type="number" min="0"></div></div>
+      <p class="bar" style="margin:12px 0 0"><button class="b p" id="fo-add">Salvar formas</button></p>
+      <p class="note">Se a dimensão (e linha) já existir, a quantidade é atualizada. Sem linha, vale para todas. A tabela mostra o empenho na data escolhida acima.</p></div>
+    <div class="sheet tw" id="fo-lista"></div>
+  </section>
+
+  <section class="view" id="v-plan">
+    <div class="panel"><h3>Meta de produção por dia</h3>
+      <div class="grid"><div><label for="pl-d">Data</label><input type="date" id="pl-d"></div><div><label for="pl-m">Metros quadrados (m²)</label><input type="number" id="pl-m" min="0" step="0.1"></div></div>
+      <p class="bar" style="margin:12px 0 0"><button class="b p" id="pl-add">Adicionar dia</button><button class="b" id="pl-lim">Limpar dias</button></p>
+      <div id="pl-dias" style="margin-top:10px"></div>
+      <label style="display:flex;gap:6px;align-items:center;margin:10px 0 0"><input type="checkbox" id="pl-so" style="width:auto"> Programar só as peças sem data de produção (não mexe nas que já têm data)</label>
+      <div class="grid" style="margin-top:12px"><div><label for="pl-pad">Meta padrão (m² por dia útil)</label><input type="number" id="pl-pad" min="0" step="0.1"></div><div><label for="pl-hor">Programar nos próximos (dias)</label><input type="number" id="pl-hor" min="1" max="60"></div></div>
+      <label style="display:flex;gap:6px;align-items:center;margin:10px 0 0"><input type="checkbox" id="pl-auto" style="width:auto"> Programar sozinho as peças sem data (ao cadastrar, importar ou abrir o sistema)</label>
+      <p class="note">As peças pendentes entram nos dias informados por ordem de prazo de entrega (o mais próximo primeiro) até completar a meta de m² de cada dia.</p></div>
+    <div id="pl-prev"></div>
+  </section>
+
+  <div class="modal noprint" id="modal" hidden><div class="mbox" id="mbox"></div></div>
+
+  <section class="view" id="v-imp">
+    <div class="panel"><h3>Importar planilha de Excel</h3>
+      <div class="grid"><div><label for="im-file">Arquivo (.xlsx ou .csv)</label><input type="file" id="im-file" accept=".xlsx,.xlsm,.xls,.csv"></div><div><label for="im-aba">Aba</label><select id="im-aba"></select></div></div>
+      <p class="bar" style="margin:12px 0 0"><label style="display:flex;gap:6px;align-items:center;margin:0"><input type="checkbox" id="im-sub" style="width:auto"> Substituir pedidos já cadastrados (mesmo nº e cliente)</label></p>
+      <p class="note">Lê as linhas de ENCHIMENTO da sua base (data da execução, planejado, realizado, linha, cor, formato, dimensão e kg). Desforma, paletização e pintura são recalculadas pelo sistema. Confira a prévia antes de importar.</p></div>
+    <div id="im-prev"></div>
+  </section>
+
+  <section class="view" id="v-usr">
+    <div class="panel">
+      <h3>Criar nova conta</h3>
+      <div class="grid">
+        <div><label for="u-nome">Nome</label><input id="u-nome" autocomplete="off"></div>
+        <div><label for="u-email">E-mail</label><input id="u-email" type="email" autocomplete="off"></div>
+        <div><label for="u-pw">Senha (mín. 6 caracteres)</label><input id="u-pw" type="text" autocomplete="off"></div>
+        <div><label for="u-role">Perfil</label><select id="u-role"><option value="op">Operador (acesso completo)</option><option value="view">Visualizador (só indicadores)</option></select></div>
+      </div>
+      <p class="bar" style="margin:12px 0 0"><button class="b p" id="u-criar" type="button">Criar conta</button></p>
+      <p id="u-msg" class="note"></p>
+    </div>
+    <div class="panel"><h3>Contas cadastradas</h3><div class="tw" id="u-lista"></div></div>
+  </section>
+
+  <section class="view" id="v-cfg">
+    <div class="panel">
+      <h3>Regras do ciclo de produção</h3>
+      <p class="note" style="margin:0 0 10px">Tudo é calculado a partir da data de produção (enchimento) de cada peça.</p>
+      <div class="grid">
+        <div><label for="c-pin">Pintura: dias antes/depois do enchimento</label><input id="c-pin" type="number"></div>
+        <div><label for="c-des">Desforma: dias depois do enchimento</label><input id="c-des" type="number" min="0"></div>
+        <div><label for="c-pal">Paletização/expedição: dias depois</label><input id="c-pal" type="number" min="0"></div>
+        <div><label for="c-ute">Contar dias</label><select id="c-ute"><option value="0">Corridos</option><option value="1">Só úteis (seg–sex)</option></select></div>
+        <div><label for="c-aut">Reprogramar pendências</label><select id="c-aut"><option value="0">Manual (botão)</option><option value="1">Automático ao abrir o sistema</option></select></div>
+        <div><label for="c-den">Densidade do concreto (kg/m³)</label><input id="c-den" type="number" min="0"></div>
+      </div>
+      <p class="note">Pintura 0 = a forma é limpa e pintada no mesmo dia do enchimento. A previsão de término do pedido usa o prazo de paletização.</p>
+    </div>
+    <div class="panel"><h3>Dados</h3><p class="note" id="stor" style="margin:0"></p><p class="bar" style="margin:10px 0 0"><button class="b" id="rekg">Recalcular o peso de todas as peças pela dimensão</button></p></div>
+  </section>
+</main>
+
+<script src="auth.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
